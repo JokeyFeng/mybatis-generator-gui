@@ -80,6 +80,8 @@ public class DbUtil {
 		    while (rs.next()) {
 			    tables.add(rs.getString(3));
 		    }
+		    //根据表名进行排序
+		    bubbleSort(tables);
 		    return tables;
 	    } finally {
 	    	connection.close();
@@ -114,4 +116,21 @@ public class DbUtil {
         return connectionUrl;
     }
 
+	/**
+	 * 对表明进行排序
+	 * @param list
+	 */
+	public static void bubbleSort(List<String> list){
+		String temp;
+		int size= list.size();
+		for (int i = 0; i < size -1; i++){
+			for (int j = i + 1; j < size; j++){
+				if (list.get(i).compareTo(list.get(j)) > 0){
+					temp = list.get(i);
+					list.set(i,list.get(j));
+					list.set(i,temp);
+				}
+			}
+		}
+	}
 }
